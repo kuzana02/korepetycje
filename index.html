@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korepetycje z Matematyki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 0;
+            font-size: 24px;
+            animation: slideDown 1s ease-out;
+        }
+        nav {
+            background-color: #0056b3;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+        .hero img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+            filter: brightness(70%);
+        }
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: fadeIn 2s;
+        }
+        .price {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .contact {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>Korepetycje z Matematyki</header>
+    <nav>
+        <a href="#about">O mnie</a>
+        <a href="#offer">Oferta</a>
+        <a href="#contact">Kontakt</a>
+    </nav>
+    <div class="hero">
+        <img src="tutoring.jpg" alt="Korepetycje Matematyczne">
+        <div class="hero-text">Indywidualne podejście do każdego ucznia</div>
+    </div>
+    <div class="container" id="about">
+        <h2>O mnie</h2>
+        <p>Oferuję profesjonalne korepetycje z matematyki i fizyki (poziom podstawowy). Przygotowuję do egzaminu ósmoklasisty, matury (podstawowej i rozszerzonej), konkursów i olimpiad.</p>
+        <p>Jestem doświadczonym korepetytorem, stale rozwijam swoją wiedzę na kierunkach matematycznych. Podchodzę indywidualnie do każdego ucznia, dostosowując materiał i sposób nauki.</p>
+    </div>
+    <div class="container" id="offer">
+        <h2>Oferta</h2>
+        <p class="price">Cena za 60 minut zajęć:<br>65 zł - poziom podstawowy<br>75 zł - poziom rozszerzony</p>
+        <p>Oferuję zajęcia stacjonarne i online, dostosowane do potrzeb ucznia.</p>
+    </div>
+    <div class="container" id="contact">
+        <h2>Kontakt</h2>
+        <p>Telefon: Twój numer telefonu</p>
+        <p>Email: Twój e-mail</p>
+    </div>
+    <footer>
+        &copy; 2025 Korepetycje z Matematyki. Wszelkie prawa zastrzeżone.
+    </footer>
+</body>
+</html>
