@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Korepetycje z Matematyki i Fizyki - Strona Główna</title>
+    <title>Korepetycje z Matematyki i Fizyki</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Resetowanie stylów */
         * {
@@ -15,19 +16,54 @@
 
         body {
             background-color: #f8f9fa;
-            color: #333;
+            color: #2c3e50;
             line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 5% 10%, rgba(41, 128, 185, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 95% 10%, rgba(52, 152, 219, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 90%, rgba(52, 152, 219, 0.05) 0%, transparent 20%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Matematyczne elementy tła */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M10 10h20v20H10z' stroke='%232c3e50' stroke-width='0.5' fill='none' opacity='0.03'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 C25,30 75,30 90,10' stroke='%232c3e50' stroke-width='0.7' fill='none' opacity='0.03'/%3E%3Cpath d='M10,90 C25,70 75,70 90,90' stroke='%232c3e50' stroke-width='0.7' fill='none' opacity='0.03'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ctext x='40' y='40' font-family='Arial' font-size='10' text-anchor='middle' fill='%232c3e50' opacity='0.03'%3Eπ%3C/text%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ctext x='30' y='30' font-family='Arial' font-size='12' text-anchor='middle' fill='%232c3e50' opacity='0.03'%3E∑%3C/text%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 70 70'%3E%3Ctext x='35' y='35' font-family='Arial' font-size='14' text-anchor='middle' fill='%232c3e50' opacity='0.03'%3E∫%3C/text%3E%3C/svg%3E");
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Nagłówek i nawigacja */
         header {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header::after {
+            content: "∞";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            opacity: 0.1;
         }
 
         .container {
@@ -45,6 +81,16 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: #3498db;
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
         }
 
         nav ul {
@@ -54,6 +100,7 @@
 
         nav ul li {
             margin-left: 1.5rem;
+            position: relative;
         }
 
         nav ul li a {
@@ -61,12 +108,19 @@
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 4px;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 8px;
         }
 
         nav ul li a:hover, 
         nav ul li a.active {
             background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
 
         /* Strona główna */
@@ -75,14 +129,35 @@
             padding: 4rem 0;
             background-color: white;
             margin-bottom: 2rem;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "∑";
+            position: absolute;
+            font-size: 20rem;
+            bottom: -70px;
+            right: -40px;
+            color: rgba(52, 152, 219, 0.03);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #2575fc;
+            color: #2c3e50;
+        }
+
+        .hero h1 span {
+            color: #3498db;
         }
 
         .hero p {
@@ -95,12 +170,29 @@
         /* Sekcje */
         .section {
             display: none;
-            padding: 2rem;
+            padding: 2.5rem;
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
             flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: "π";
+            position: absolute;
+            font-size: 15rem;
+            bottom: -50px;
+            right: -30px;
+            color: rgba(52, 152, 219, 0.03);
+            z-index: 0;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 1;
         }
 
         .section.active {
@@ -114,10 +206,17 @@
         }
 
         .section h2 {
-            color: #2575fc;
+            color: #2c3e50;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2 i {
+            margin-right: 10px;
+            color: #3498db;
         }
 
         /* Oferta */
@@ -130,19 +229,29 @@
 
         .offer-item {
             background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-            padding: 1.5rem;
+            padding: 1.8rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-left: 4px solid #3498db;
+            position: relative;
         }
 
         .offer-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
         .offer-item h3 {
-            color: #6a11cb;
+            color: #2c3e50;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .offer-item h3 i {
+            margin-right: 10px;
+            color: #3498db;
         }
 
         /* Cennik */
@@ -150,21 +259,22 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
             overflow: hidden;
         }
 
         .pricing-table th, 
         .pricing-table td {
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: left;
             border-bottom: 1px solid #eee;
         }
 
         .pricing-table th {
-            background-color: #6a11cb;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
+            font-weight: 500;
         }
 
         .pricing-table tr:last-child td {
@@ -173,6 +283,14 @@
 
         .pricing-table tr:nth-child(even) {
             background-color: #f9f9f9;
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: #2c3e50;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
         /* Opinie */
@@ -185,52 +303,234 @@
 
         .review-card {
             background-color: #f8f9fa;
-            padding: 1.5rem;
+            padding: 1.8rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #6a11cb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3498db;
+            position: relative;
+        }
+
+        .review-card::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(52, 152, 219, 0.2);
         }
 
         .review-text {
             font-style: italic;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .review-author {
             font-weight: bold;
-            color: #6a11cb;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
         }
 
-        /* Kontakt */
-        .contact-info {
-            margin-bottom: 2rem;
+        .review-author i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+
+        /* Kontakt - Formularz */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 30px;
+        }
+
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info h3 i {
+            margin-right: 10px;
+            color: #3498db;
         }
 
         .contact-details {
             background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-            padding: 1.5rem;
+            padding: 1.8rem;
             border-radius: 8px;
             margin-top: 1rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3498db;
         }
 
         .contact-details p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: #3498db;
+            width: 20px;
         }
 
         .contact-details strong {
-            color: #6a11cb;
+            color: #2c3e50;
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            color: #2c3e50;
+            text-decoration: none;
+            margin-right: 15px;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        .social-link:hover {
+            color: #3498db;
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .social-link i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Przyciski */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Powiadomienie o wysłaniu formularza */
+        .form-alert {
+            display: none;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .form-alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
         /* Stopka */
         footer {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 2.5rem 0;
             margin-top: 2rem;
         }
 
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .math-symbol {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            opacity: 0.7;
+        }
+
         /* Responsywność */
+        @media (max-width: 968px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -238,7 +538,7 @@
             }
 
             nav ul {
-                margin-top: 1rem;
+                margin-top: 1.5rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -255,6 +555,16 @@
             .reviews {
                 grid-template-columns: 1fr;
             }
+
+            .section, .hero {
+                padding: 1.8rem;
+            }
+            
+            .hero::before {
+                font-size: 15rem;
+                bottom: -50px;
+                right: -30px;
+            }
         }
     </style>
 </head>
@@ -262,14 +572,17 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Korepetycje z Matematyki i Fizyki</div>
+                <div class="logo">
+                    <i class="fas fa-square-root-alt"></i>
+                    Korepetycje z Matematyki i Fizyki
+                </div>
                 <nav>
                     <ul>
-                        <li><a href="#" class="nav-link active" data-section="home">Strona Główna</a></li>
-                        <li><a href="#" class="nav-link" data-section="offer">Oferta</a></li>
-                        <li><a href="#" class="nav-link" data-section="pricing">Cennik</a></li>
-                        <li><a href="#" class="nav-link" data-section="reviews">Opinie</a></li>
-                        <li><a href="#" class="nav-link" data-section="contact">Kontakt</a></li>
+                        <li><a href="#" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Strona Główna</a></li>
+                        <li><a href="#" class="nav-link" data-section="offer"><i class="fas fa-book-open"></i> Oferta</a></li>
+                        <li><a href="#" class="nav-link" data-section="pricing"><i class="fas fa-tag"></i> Cennik</a></li>
+                        <li><a href="#" class="nav-link" data-section="reviews"><i class="fas fa-star"></i> Opinie</a></li>
+                        <li><a href="#" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Kontakt</a></li>
                     </ul>
                 </nav>
             </div>
@@ -280,15 +593,17 @@
         <!-- Strona Główna -->
         <section id="home" class="section active">
             <div class="hero">
-                <h1>Korepetycje z Matematyki i Fizyki</h1>
-                <p>Przygotowanie do egzaminu ósmoklasisty, matury (podstawa i rozszerzenie), konkursów, sprawdzianów oraz pomoc w nadrobieniu zaległości.</p>
+                <div class="hero-content">
+                    <h1><span>Korepetycje</span> z Matematyki i Fizyki</h1>
+                    <p>Przygotowanie do egzaminu ósmoklasisty, matury (podstawa i rozszerzenie), konkursów, sprawdzianów oraz pomoc w nadrobieniu zaległości.</p>
+                </div>
             </div>
             
             <div class="section-content">
-                <h2>O mnie</h2>
+                <h2><i class="fas fa-user-graduate"></i> O mnie</h2>
                 <p>Mam 6-letnie doświadczenie w udzielaniu korepetycji. Ukończyłam studia na wydziale matematycznym, obecnie studiuję matematykę i informatykę na poziomie magisterskim.</p>
                 
-                <h2>Dlaczego warto wybrać moje korepetycje?</h2>
+                <h2><i class="fas fa-check-circle"></i> Dlaczego warto wybrać moje korepetycje?</h2>
                 <ul>
                     <li>Indywidualne podejście i plan nauki dopasowany do ucznia</li>
                     <li>Praca w oparciu o materiały CKE i własne opracowania</li>
@@ -301,27 +616,27 @@
 
         <!-- Oferta -->
         <section id="offer" class="section">
-            <h2>Oferta</h2>
+            <h2><i class="fas fa-book-open"></i> Oferta</h2>
             <p>Oferuję korepetycje z matematyki i fizyki na różnych poziomach zaawansowania:</p>
             
             <div class="offer-list">
                 <div class="offer-item">
-                    <h3>Przygotowanie do matury</h3>
+                    <h3><i class="fas fa-calculator"></i> Przygotowanie do matury</h3>
                     <p>Kompleksowe przygotowanie do matury podstawowej i rozszerzonej z matematyki i fizyki. Praca na arkuszach maturalnych, materiałach CKE oraz autorskich zadaniach.</p>
                 </div>
                 
                 <div class="offer-item">
-                    <h3>Przygotowanie do egzaminu ósmoklasisty</h3>
+                    <h3><i class="fas fa-pencil-alt"></i> Przygotowanie do egzaminu ósmoklasisty</h3>
                     <p>Skuteczne przygotowanie do egzaminu ósmoklasisty z matematyki, z wykorzystaniem nowoczesnych metod nauczania i sprawdzonych materiałów.</p>
                 </div>
                 
                 <div class="offer-item">
-                    <h3>Nadrabianie zaległości</h3>
+                    <h3><i class="fas fa-clock"></i> Nadrabianie zaległości</h3>
                     <p>Pomoc w nadrobieniu szkolnych zaległości, wytłumaczenie trudnych zagadnień w przystępny sposób oraz pomoc w odrabianiu prac domowych.</p>
                 </div>
                 
                 <div class="offer-item">
-                    <h3>Zajęcia online</h3>
+                    <h3><i class="fas fa-laptop"></i> Zajęcia online</h3>
                     <p>Zajęcia zdalne prowadzone na Teams, Discordzie lub Messengerze z wykorzystaniem wirtualnej tablicy. Po zajęciach przesyłam notatki z lekcji.</p>
                 </div>
             </div>
@@ -331,7 +646,7 @@
 
         <!-- Cennik -->
         <section id="pricing" class="section">
-            <h2>Cennik</h2>
+            <h2><i class="fas fa-tag"></i> Cennik</h2>
             <p>Lekcje trwają 60 minut. Poniżej przedstawiam szczegółowy cennik moich usług:</p>
             
             <table class="pricing-table">
@@ -345,23 +660,23 @@
                 <tbody>
                     <tr>
                         <td>Matematyka (poziom podstawowy)</td>
-                        <td>75 zł/h</td>
-                        <td>70 zł/h</td>
+                        <td><span class="price-tag">75 zł/h</span></td>
+                        <td><span class="price-tag">70 zł/h</span></td>
                     </tr>
                     <tr>
                         <td>Matematyka (poziom rozszerzony)</td>
-                        <td>85 zł/h</td>
-                        <td>80 zł/h</td>
+                        <td><span class="price-tag">85 zł/h</span></td>
+                        <td><span class="price-tag">80 zł/h</span></td>
                     </tr>
                     <tr>
                         <td>Fizyka (poziom podstawowy)</td>
-                        <td>75 zł/h</td>
-                        <td>70 zł/h</td>
+                        <td><span class="price-tag">75 zł/h</span></td>
+                        <td><span class="price-tag">70 zł/h</span></td>
                     </tr>
                     <tr>
                         <td>Fizyka (poziom rozszerzony)</td>
-                        <td>85 zł/h</td>
-                        <td>80 zł/h</td>
+                        <td><span class="price-tag">85 zł/h</span></td>
+                        <td><span class="price-tag">80 zł/h</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -371,23 +686,23 @@
 
         <!-- Opinie -->
         <section id="reviews" class="section">
-            <h2>Opinie uczniów</h2>
+            <h2><i class="fas fa-star"></i> Opinie uczniów</h2>
             <p>Poniżej znajdziesz opinie moich uczniów na temat prowadzonych przeze mnie korepetycji:</p>
             
             <div class="reviews">
                 <div class="review-card">
                     <div class="review-text">"Dzięki korepetycjom udało mi się nadrobić duże zaległości z matematyki i zdać maturę na bardzo dobrym poziomie. Polecam!"</div>
-                    <div class="review-author">Anna, maturzystka</div>
+                    <div class="review-author"><i class="fas fa-user"></i> Anna, maturzystka</div>
                 </div>
                 
                 <div class="review-card">
                     <div class="review-text">"Bardzo profesjonalne podejście do ucznia. Wszystko tłumaczone w przystępny sposób. Notatki po każdej lekcji są bardzo pomocne."</div>
-                    <div class="review-author">Tomasz, uczeń liceum</div>
+                    <div class="review-author"><i class="fas fa-user"></i> Tomasz, uczeń liceum</div>
                 </div>
                 
                 <div class="review-card">
                     <div class="review-text">"Zajęcia online są prowadzone tak samo skutecznie jak stacjonarne. Tablet graficzny i wspólne notatki to świetne rozwiązanie."</div>
-                    <div class="review-author">Kasia, uczennica technikum</div>
+                    <div class="review-author"><i class="fas fa-user"></i> Kasia, uczennica technikum</div>
                 </div>
             </div>
             
@@ -396,25 +711,61 @@
 
         <!-- Kontakt -->
         <section id="contact" class="section">
-            <h2>Kontakt</h2>
+            <h2><i class="fas fa-envelope"></i> Kontakt</h2>
             <p>Skontaktuj się ze mną, aby umówić się na lekcję lub uzyskać więcej informacji:</p>
             
-            <div class="contact-info">
-                <h3>Dane kontaktowe</h3>
-                <div class="contact-details">
-                    <p><strong>Email:</strong> marysia.kuzanska16@onet.pl</p>
-                    <p><strong>Telefon:</strong> +48 884 807 338</p>
-                    <p><strong>Miejsce zajęć:</strong> Łódź / Online</p>
-                    <p><strong>Platformy do zajęć online:</strong> Microsoft Teams, Discord, Messenger</p>
-                </div>
-            </div>
-            
-            <div class="contact-info">
-                <h3>Godziny dostępności</h3>
-                <div class="contact-details">
-                    <p><strong>Poniedziałek - Piątek:</strong> 8:00 - 20:00</p>
-                    <p><strong>Sobota:</strong> 9:00 - 15:00</p>
-                    <p><strong>Niedziela:</strong> Nieczynne</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3><i class="fas fa-address-card"></i> Dane kontaktowe</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> marysia.kuzanska16@onet.pl</p>
+                        <p><i class="fas fa-phone"></i> <strong>Telefon:</strong> +48 884 807 338</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Miejsce zajęć:</strong> Łódź / Online</p>
+                        <p><i class="fas fa-laptop"></i> <strong>Platformy do zajęć online:</strong> Microsoft Teams, Discord, Messenger</p>
+                    </div>
+                    
+                    <h3><i class="fas fa-clock"></i> Godziny dostępności</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-calendar-day"></i> <strong>Poniedziałek - Piątek:</strong> 8:00 - 22:00</p>
+                        <p><i class="fas fa-calendar-day"></i> <strong>Sobota:</strong> 9:00 - 15:00</p>
+                        <p><i class="fas fa-calendar-day"></i> <strong>Niedziela:</strong> Nieczynne</p>
+                    </div>
+                    
+                 
+                
+                <div class="contact-form">
+                    <h3><i class="fas fa-paper-plane"></i> Wyślij wiadomość</h3>
+                    <form action="https://formspree.io/f/mqadqzdg" method="POST" id="contactForm">
+                        <div class="form-group">
+                            <label for="name"><i class="fas fa-user"></i> Imię i nazwisko</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject"><i class="fas fa-tag"></i> Temat</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message"><i class="fas fa-comment"></i> Wiadomość</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Wyślij wiadomość</button>
+                        
+                        <div class="form-alert success" id="successAlert">
+                            Wiadomość została wysłana! Odpowiem tak szybko, jak to możliwe.
+                        </div>
+                        
+                        <div class="form-alert error" id="errorAlert">
+                            Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -423,6 +774,7 @@
     <footer>
         <div class="container">
             <p>© 2023 Korepetycje z Matematyki i Fizyki | Wszelkie prawa zastrzeżone</p>
+            <p>Matematyka <span class="math-symbol">∞</span> Fizyka <span class="math-symbol">π</span> Nauka</p>
         </div>
     </footer>
 
@@ -485,8 +837,62 @@
                     changeSection('home');
                 }
             });
+
+            // Obsługa formularza kontaktowego
+            const contactForm = document.getElementById('contactForm');
+            const successAlert = document.getElementById('successAlert');
+            const errorAlert = document.getElementById('errorAlert');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    // Zmiana tekstu przycisku na "Wysyłanie..."
+                    submitButton.innerHTML = 'Wysyłanie...';
+                    submitButton.disabled = true;
+                    
+                    const formData = new FormData(contactForm);
+                    
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            successAlert.style.display = 'block';
+                            errorAlert.style.display = 'none';
+                            contactForm.reset();
+                            
+                            // Ukryj powiadomienie po 5 sekundach
+                            setTimeout(() => {
+                                successAlert.style.display = 'none';
+                            }, 5000);
+                        } else {
+                            throw new Error('Błąd sieci');
+                        }
+                    } catch (error) {
+                        successAlert.style.display = 'none';
+                        errorAlert.style.display = 'block';
+                        
+                        // Ukryj powiadomienie o błędzie po 5 sekundach
+                        setTimeout(() => {
+                            errorAlert.style.display = 'none';
+                        }, 5000);
+                    } finally {
+                        // Przywróć oryginalny tekst przycisku
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }
+                });
+            }
         });
     </script>
 </body>
 </html>
-
