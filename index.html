@@ -1,658 +1,491 @@
 <!DOCTYPE html>
-<html lang="pl"> 
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Korepetycje z Matematyki i Fizyki | Strona Główna</title>
+    <title>Korepetycje z Matematyki i Fizyki - Strona Główna</title>
     <style>
-        /* Reset i podstawowe style */
+        /* Resetowanie stylów */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f5f7fa;
+            background-color: #f8f9fa;
             color: #333;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        
+
+        /* Nagłówek i nawigacja */
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
         }
-        
-        /* Nagłówek i nawigacja */
-        header {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
+            font-weight: bold;
         }
-        
-        .logo span {
-            color: #3498db;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 2rem;
-        }
-        
+
         nav ul {
             display: flex;
             list-style: none;
         }
-        
+
         nav ul li {
             margin-left: 1.5rem;
         }
-        
+
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            padding: 5px 10px;
+            padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: background-color 0.3s;
         }
-        
+
         nav ul li a:hover, 
         nav ul li a.active {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.2);
         }
-        
-        /* Strona główna - Hero section */
+
+        /* Strona główna */
         .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a6491"/><text x="50%" y="50%" font-family="Arial" font-size="10" fill="%23ffffff" text-anchor="middle" dominant-baseline="middle">Math/Physics</text></svg>');
-            background-size: cover;
-            color: white;
             text-align: center;
-            padding: 5rem 1rem;
-            margin-bottom: 3rem;
+            padding: 4rem 0;
+            background-color: white;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
         }
-        
+
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: #2575fc;
         }
-        
+
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
-            margin: 0 auto 2rem;
+            margin: 0 auto;
+            color: #555;
         }
-        
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s, transform 0.3s;
+
+        /* Sekcje */
+        .section {
+            display: none;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            flex: 1;
         }
-        
-        .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
-        
-        /* Sekcje wspólne */
-        .section-title {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: #2c3e50;
-            position: relative;
-            padding-bottom: 15px;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #3498db;
-            border-radius: 2px;
+
+        .section h2 {
+            color: #2575fc;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
         }
-        
-        section {
-            padding: 4rem 0;
-        }
-        
+
         /* Oferta */
-        .subjects {
+        .offer-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
-        
-        .subject-card {
-            background: white;
+
+        .offer-item {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 1.5rem;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
         }
-        
-        .subject-card:hover {
-            transform: translateY(-10px);
+
+        .offer-item:hover {
+            transform: translateY(-5px);
         }
-        
-        .subject-icon {
-            background-color: #3498db;
-            color: white;
-            font-size: 2.5rem;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .subject-content {
-            padding: 1.5rem;
-        }
-        
-        .subject-content h3 {
-            color: #2c3e50;
+
+        .offer-item h3 {
+            color: #6a11cb;
             margin-bottom: 1rem;
         }
-        
+
         /* Cennik */
-        .pricing {
-            background-color: #eef2f7;
-        }
-        
         .pricing-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .pricing-plan {
-            background: white;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s;
         }
-        
-        .pricing-plan:hover {
-            transform: scale(1.03);
-        }
-        
-        .plan-header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1.5rem;
-        }
-        
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-        
-        .plan-price span {
-            font-size: 1rem;
-            font-weight: 400;
-        }
-        
-        .plan-features {
-            padding: 1.5rem;
-            list-style: none;
-        }
-        
-        .plan-features li {
-            padding: 0.7rem 0;
+
+        .pricing-table th, 
+        .pricing-table td {
+            padding: 1rem;
+            text-align: left;
             border-bottom: 1px solid #eee;
         }
-        
-        .plan-features li:last-child {
+
+        .pricing-table th {
+            background-color: #6a11cb;
+            color: white;
+        }
+
+        .pricing-table tr:last-child td {
             border-bottom: none;
         }
-        
+
+        .pricing-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
         /* Opinie */
-        .testimonials {
+        .reviews {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+        .review-card {
+            background-color: #f8f9fa;
             padding: 1.5rem;
-            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #6a11cb;
         }
-        
-        .testimonial-card:before {
-            content: '"';
-            font-size: 5rem;
-            color: #3498db;
-            opacity: 0.2;
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            line-height: 1;
-        }
-        
-        .testimonial-text {
-            margin-bottom: 1.5rem;
+
+        .review-text {
             font-style: italic;
+            margin-bottom: 1rem;
         }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #3498db;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .review-author {
             font-weight: bold;
-            margin-right: 15px;
+            color: #6a11cb;
         }
-        
+
         /* Kontakt */
-        .contact {
-            background-color: #eef2f7;
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-        
         .contact-info {
             margin-bottom: 2rem;
         }
-        
-        .contact-info h3 {
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-        
+
         .contact-details {
-            list-style: none;
-        }
-        
-        .contact-details li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .contact-details i {
-            margin-right: 15px;
-            color: #3498db;
-            font-size: 1.2rem;
-            width: 20px;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 2rem;
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
         }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
+
+        .contact-details p {
             margin-bottom: 0.5rem;
-            font-weight: 500;
         }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
+
+        .contact-details strong {
+            color: #6a11cb;
         }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
+
         /* Stopka */
         footer {
-            background-color: #2c3e50;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             color: white;
-            padding: 2rem 0;
             text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
         }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .social-links {
-            margin: 1.5rem 0;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: #3498db;
-        }
-        
+
         /* Responsywność */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             nav ul {
                 margin-top: 1rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             nav ul li {
                 margin: 0.5rem;
             }
-            
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
-            
-            .hero p {
-                font-size: 1rem;
+
+            .offer-list,
+            .reviews {
+                grid-template-columns: 1fr;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Nagłówek z nawigacją -->
     <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-square-root-variable"></i>
-                <div>Math<span>Physics</span></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Korepetycje z Matematyki i Fizyki</div>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-section="home">Strona Główna</a></li>
+                        <li><a href="#" class="nav-link" data-section="offer">Oferta</a></li>
+                        <li><a href="#" class="nav-link" data-section="pricing">Cennik</a></li>
+                        <li><a href="#" class="nav-link" data-section="reviews">Opinie</a></li>
+                        <li><a href="#" class="nav-link" data-section="contact">Kontakt</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#" class="active">Strona Główna</a></li>
-                    <li><a href="#">Oferta</a></li>
-                    <li><a href="#">Cennik</a></li>
-                    <li><a href="#">Opinie</a></li>
-                    <li><a href="#">Kontakt</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <!-- Sekcja powitalna -->
-    <section class="hero">
-        <div class="container">
-            <h1>Korepetycje z Matematyki i Fizyki</h1>
-            <p>Podnosisz swoje umiejętności, rozwijasz pasje i osiągasz lepsze wyniki w nauce. Z nami matematyka i fizyka stają się proste!</p>
-            <a href="#" class="btn">Umów lekcję</a>
-        </div>
-    </section>
+    <main class="container">
+        <!-- Strona Główna -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Korepetycje z Matematyki i Fizyki</h1>
+                <p>Przygotowanie do egzaminu ósmoklasisty, matury (podstawa i rozszerzenie), konkursów, sprawdzianów oraz pomoc w nadrobieniu zaległości.</p>
+            </div>
+            
+            <div class="section-content">
+                <h2>O mnie</h2>
+                <p>Mam 6-letnie doświadczenie w udzielaniu korepetycji. Ukończyłam studia na wydziale matematycznym, obecnie studiuję matematykę i informatykę na poziomie magisterskim.</p>
+                
+                <h2>Dlaczego warto wybrać moje korepetycje?</h2>
+                <ul>
+                    <li>Indywidualne podejście i plan nauki dopasowany do ucznia</li>
+                    <li>Praca w oparciu o materiały CKE i własne opracowania</li>
+                    <li>Zajęcia stacjonarne w Łodzi lub online</li>
+                    <li>Notatki z lekcji przesyłane po każdych zajęciach</li>
+                    <li>Doświadczenie w przygotowaniu do egzaminów</li>
+                </ul>
+            </div>
+        </section>
 
-    <!-- Sekcja oferty -->
-    <section id="offer" class="container">
-        <h2 class="section-title">Oferta</h2>
-        <div class="subjects">
-            <div class="subject-card">
-                <div class="subject-icon">
-                    <i class="fas fa-calculator"></i>
+        <!-- Oferta -->
+        <section id="offer" class="section">
+            <h2>Oferta</h2>
+            <p>Oferuję korepetycje z matematyki i fizyki na różnych poziomach zaawansowania:</p>
+            
+            <div class="offer-list">
+                <div class="offer-item">
+                    <h3>Przygotowanie do matury</h3>
+                    <p>Kompleksowe przygotowanie do matury podstawowej i rozszerzonej z matematyki i fizyki. Praca na arkuszach maturalnych, materiałach CKE oraz autorskich zadaniach.</p>
                 </div>
-                <div class="subject-content">
-                    <h3>Matematyka</h3>
-                    <p>Korepetycje na każdym poziomie zaawansowania - od szkoły podstawowej po studia. Pomoc w przygotowaniu do egzaminów, kolokwiów i zaliczeń.</p>
-                    <ul>
-                        <li>Matematyka szkolna</li>
-                        <li>Przygotowanie do matury</li>
-                        <li>Matematyka wyższa</li>
-                        <li>Kursy akademickie</li>
-                    </ul>
+                
+                <div class="offer-item">
+                    <h3>Przygotowanie do egzaminu ósmoklasisty</h3>
+                    <p>Skuteczne przygotowanie do egzaminu ósmoklasisty z matematyki, z wykorzystaniem nowoczesnych metod nauczania i sprawdzonych materiałów.</p>
+                </div>
+                
+                <div class="offer-item">
+                    <h3>Nadrabianie zaległości</h3>
+                    <p>Pomoc w nadrobieniu szkolnych zaległości, wytłumaczenie trudnych zagadnień w przystępny sposób oraz pomoc w odrabianiu prac domowych.</p>
+                </div>
+                
+                <div class="offer-item">
+                    <h3>Zajęcia online</h3>
+                    <p>Zajęcia zdalne prowadzone na Teams, Discordzie lub Messengerze z wykorzystaniem wirtualnej tablicy. Po zajęciach przesyłam notatki z lekcji.</p>
                 </div>
             </div>
             
-            <div class="subject-card">
-                <div class="subject-icon">
-                    <i class="fas fa-atom"></i>
-                </div>
-                <div class="subject-content">
-                    <h3>Fizyka</h3>
-                    <p>Zrozum trudne zagadnienia fizyczne dzięki indywidualnemu podejściu. Oferujemy pomoc w nauce fizyki na wszystkich poziomach edukacji.</p>
-                    <ul>
-                        <li>Fizyka szkolna</li>
-                        <li>Przygotowanie do matury</li>
-                        <li>Fizyka wyższa</li>
-                        <li>Mechanika teoretyczna</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            <p>Prowadzę zajęcia w oparciu o materiały CKE i własne opracowania, zapewniając indywidualne podejście do każdego ucznia.</p>
+        </section>
 
-    <!-- Sekcja cennika -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Cennik</h2>
-            <div class="pricing-table">
-                <div class="pricing-plan">
-                    <div class="plan-header">
-                        <h3>Pakiet podstawowy</h3>
-                        <div class="plan-price">60 <span>zł / 60 min</span></div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>Zajęcia indywidualne</li>
-                        <li>Materiały dydaktyczne</li>
-                        <li>Dostęp do platformy online</li>
-                        <li>Elastyczne godziny</li>
-                    </ul>
-                    <a href="#" class="btn">Wybieram</a>
+        <!-- Cennik -->
+        <section id="pricing" class="section">
+            <h2>Cennik</h2>
+            <p>Lekcje trwają 60 minut. Poniżej przedstawiam szczegółowy cennik moich usług:</p>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Rodzaj zajęć</th>
+                        <th>1 godzina tygodniowo</th>
+                        <th>Więcej niż 1 godzina tygodniowo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Matematyka (poziom podstawowy)</td>
+                        <td>75 zł/h</td>
+                        <td>70 zł/h</td>
+                    </tr>
+                    <tr>
+                        <td>Matematyka (poziom rozszerzony)</td>
+                        <td>85 zł/h</td>
+                        <td>80 zł/h</td>
+                    </tr>
+                    <tr>
+                        <td>Fizyka (poziom podstawowy)</td>
+                        <td>75 zł/h</td>
+                        <td>70 zł/h</td>
+                    </tr>
+                    <tr>
+                        <td>Fizyka (poziom rozszerzony)</td>
+                        <td>85 zł/h</td>
+                        <td>80 zł/h</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Zajęcia zdalne prowadzone są na Teams, Discordzie lub Messengerze. Jeśli uczeń posiada tablet graficzny, piszemy razem na wirtualnej tablicy. Po zajęciach wysyłam plik z notatkami z lekcji.</p>
+        </section>
+
+        <!-- Opinie -->
+        <section id="reviews" class="section">
+            <h2>Opinie uczniów</h2>
+            <p>Poniżej znajdziesz opinie moich uczniów na temat prowadzonych przeze mnie korepetycji:</p>
+            
+            <div class="reviews">
+                <div class="review-card">
+                    <div class="review-text">"Dzięki korepetycjom udało mi się nadrobić duże zaległości z matematyki i zdać maturę na bardzo dobrym poziomie. Polecam!"</div>
+                    <div class="review-author">Anna, maturzystka</div>
                 </div>
                 
-                <div class="pricing-plan">
-                    <div class="plan-header">
-                        <h3>Pakiet standard</h3>
-                        <div class="plan-price">100 <span>zł / 90 min</span></div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>Zajęcia indywidualne</li>
-                        <li>Materiały dydaktyczne</li>
-                        <li>Dostęp do platformy online</li>
-                        <li>Stały termin zajęć</li>
-                        <li>Konsultacje mailowe</li>
-                    </ul>
-                    <a href="#" class="btn">Wybieram</a>
+                <div class="review-card">
+                    <div class="review-text">"Bardzo profesjonalne podejście do ucznia. Wszystko tłumaczone w przystępny sposób. Notatki po każdej lekcji są bardzo pomocne."</div>
+                    <div class="review-author">Tomasz, uczeń liceum</div>
                 </div>
                 
-                <div class="pricing-plan">
-                    <div class="plan-header">
-                        <h3>Pakiet premium</h3>
-                        <div class="plan-price">180 <span>zł / 120 min</span></div>
-                    </div>
-                    <ul class="plan-features">
-                        <li>Zajęcia indywidualne</li>
-                        <li>Materiały dydaktyczne</li>
-                        <li>Dostęp do platformy online</li>
-                        <li>Stały termin zajęć</li>
-                        <li>Konsultacje mailowe</li>
-                        <li>Dodatkowe materiały</li>
-                        <li>Priority booking</li>
-                    </ul>
-                    <a href="#" class="btn">Wybieram</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sekcja opinii -->
-    <section id="testimonials" class="container">
-        <h2 class="section-title">Opinie uczniów</h2>
-        <div class="testimonials">
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <p>Dzięki korepetycjom z matematyki udało mi się zdać mature rozszerzoną na 92%! Polecam każdemu, kto ma problemy z matematyką.</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">AK</div>
-                    <div class="author-info">
-                        <h4>Anna Kowalska</h4>
-                        <p>Matura 2023</p>
-                    </div>
+                <div class="review-card">
+                    <div class="review-text">"Zajęcia online są prowadzone tak samo skutecznie jak stacjonarne. Tablet graficzny i wspólne notatki to świetne rozwiązanie."</div>
+                    <div class="review-author">Kasia, uczennica technikum</div>
                 </div>
             </div>
             
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <p>Fizyka zawsze była moją piętą achillesową. Dzięki regularnym spotkaniom udało mi się nie tylko zdać, ale też polubić ten przedmiot.</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">PN</div>
-                    <div class="author-info">
-                        <h4>Piotr Nowak</h4>
-                        <p>Student Politechniki</p>
-                    </div>
+            <p>Mam wielu zadowolonych uczniów, którzy dzięki moim korepetycjom poprawili swoje oceny i successfully zdali egzaminy.</p>
+        </section>
+
+        <!-- Kontakt -->
+        <section id="contact" class="section">
+            <h2>Kontakt</h2>
+            <p>Skontaktuj się ze mną, aby umówić się na lekcję lub uzyskać więcej informacji:</p>
+            
+            <div class="contact-info">
+                <h3>Dane kontaktowe</h3>
+                <div class="contact-details">
+                    <p><strong>Email:</strong> korepetycje@example.com</p>
+                    <p><strong>Telefon:</strong> +48 123 456 789</p>
+                    <p><strong>Miejsce zajęć:</strong> Łódź / Online</p>
+                    <p><strong>Platformy do zajęć online:</strong> Microsoft Teams, Discord, Messenger</p>
                 </div>
             </div>
             
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    <p>Bardzo profesjonalne podejście do ucznia. Wszystko tłumaczone w przystępny sposób. Cierpliwość i zaangażowanie w 100%.</p>
-                </div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">MW</div>
-                    <div class="author-info">
-                        <h4>Maria Wiśniewska</h4>
-                        <p>Uczennica Liceum</p>
-                    </div>
+            <div class="contact-info">
+                <h3>Godziny dostępności</h3>
+                <div class="contact-details">
+                    <p><strong>Poniedziałek - Piątek:</strong> 8:00 - 20:00</p>
+                    <p><strong>Sobota:</strong> 9:00 - 15:00</p>
+                    <p><strong>Niedziela:</strong> Nieczynne</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Sekcja kontaktu -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Kontakt</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Skontaktuj się z nami</h3>
-                    <p>Masz pytania? Chcesz umówić się na pierwszą lekcję? Napisz do nas lub zadzwoń!</p>
-                    
-                    <ul class="contact-details">
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>ul. Edukacyjna 123, 00-001 Warszawa</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>+48 123 456 789</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>kontakt@mathphysics.pl</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Pon-Pt: 8:00 - 20:00<br>Sb: 9:00 - 15:00</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Formularz kontaktowy</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Imię i nazwisko</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Adres email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Temat</label>
-                            <input type="text" id="subject" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Treść wiadomości</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Wyślij wiadomość</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stopka -->
     <footer>
-        <div class="container footer-content">
-            <div class="logo">
-                <i class="fas fa-square-root-variable"></i>
-                <div>Math<span>Physics</span></div>
-            </div>
-            
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            
-            <p>&copy; 2023 Korepetycje z Matematyki i Fizyki. Wszelkie prawa zastrzeżone.</p>
+        <div class="container">
+            <p>© 2023 Korepetycje z Matematyki i Fizyki | Wszelkie prawa zastrzeżone</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pobieramy wszystkie linki nawigacyjne i sekcje
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            
+            // Funkcja zmieniająca aktywną sekcję
+            function changeSection(sectionId) {
+                // Ukrywamy wszystkie sekcje
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Pokazujemy wybraną sekcję
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Aktualizujemy aktywny link w nawigacji
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Przewijamy do góry strony
+                window.scrollTo(0, 0);
+                
+                // Aktualizujemy URL (dodajemy hash)
+                window.location.hash = sectionId;
+            }
+            
+            // Dodajemy nasłuchiwanie kliknięć na linki nawigacyjne
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    changeSection(sectionId);
+                });
+            });
+            
+            // Sprawdzamy hash w URL przy załadowaniu strony
+            if (window.location.hash) {
+                const sectionId = window.location.hash.substring(1);
+                if (document.getElementById(sectionId)) {
+                    changeSection(sectionId);
+                }
+            }
+            
+            // Dodajemy obsługę przycisku wstecz w przeglądarce
+            window.addEventListener('popstate', function() {
+                if (window.location.hash) {
+                    const sectionId = window.location.hash.substring(1);
+                    if (document.getElementById(sectionId)) {
+                        changeSection(sectionId);
+                    }
+                } else {
+                    changeSection('home');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
